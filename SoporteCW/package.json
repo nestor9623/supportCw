@@ -1,8 +1,10 @@
 {
-    "name": "SoporteCW",
-    "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
-    "author": "ASUS",
-    "contributors": [],
-    "dependencies": {}
+  "name": "mi-aplicacion",
+  "version": "1.0.0",
+  "dependencies": {
+     "express": "^4.13.3"
+  },
+  "scripts": {
+     "start": "node app.js"
+  }
 }
