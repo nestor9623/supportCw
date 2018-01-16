@@ -1,0 +1,221 @@
+<div class="card-header" data-background-color="orange">
+    <h4 class="text-primary">Asignacion de horarios</h4>
+    <p class="text-muted">Asignacion semanales de horarios y lineas para los asesores</p>
+    <div class="input-group">
+        <div class="input-group-addon "><i class="fa fa-search" aria-hidden="true"></i></div>
+        <input type="text" class="form-control" placeholder="Ingrese la empresa a buscar" ng-model="filtrar">
+    </div> 
+</div>
+
+<!--empiezo la tabla de las empresas-->
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead >
+            <tr>
+                <td>
+                    <p class="text-primary">
+                        <b>Asesor</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Fecha inicial</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Fecha final</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Jobs</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Pedidos</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Opciones</b>
+                    </p>
+                </td>
+            </tr>
+        </thead>
+
+        <tbody ng-init="listarHorarios()" >
+            <tr  ng-click="getSelectedHorario()" ng-repeat="obj in listadoHorarios|
+                            filter:filtrar">
+                <td>{{obj.asesor}}</td>
+                <td>{{obj.fechainicial}}</td>
+                <td>{{obj.fechafinal}}</td>
+                <td>{{obj.jobs}}</td>
+                <td>{{obj.pedidos}}</td>
+                <td>
+                    <button type="button" title="editar asesor" class="pull-left btn btn-success btn-xs" data-toggle="modal" data-target="#modalEditar"><i class="fa fa-pencil"></i></button>
+                    <button type="button" title="eliminar asesor" class="pull-left btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-times-circle"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--finalizo las tablas-->
+    <button type="button" title="crear asesor" class="pull-left btn btn-primary btn-xs" data-toggle="modal" data-target="#modalInsertar"><i class="fa fa-plus"></i>  Crear nuevo</button>
+</div>
+
+<div class="modal fade" id="modalEditar" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form method="post" role="form" name="formularioHorario">
+            <div class="modal-content">
+                <div class="modal-header">        
+                    <h4 class="modal-title" id="myModalLabel">Editar Registro</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!--cuerpo para editar -->
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="grantparent">Codigo registro</label>
+                                            <input type="text" class="form-control" id='codigoHorario' placeholder=""  ng-model="horario.id" readonly value="{{codigoHorario}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="grantparent">Asesor</label>
+                                            <select class="form-control" id="asesorHorario" ng-model="horario.asesor">
+                                                <option>{{asesorHorario}}</option>
+                                                <option>Bryan oquendo</option>
+                                                <option>Rafael baena</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="grantparent">Fecha inicial</label>
+                                            <input type="datetime-local" class="form-control" id='fechainicialAsesor' ng-model="horario.fechainicial" value="{{fechainicialHorario}}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="grantparent">Jobs</label>
+                                            <select class="form-control" id="jobs" ng-model="horario.jobs" >
+                                                <option>Meico,tyt,Zys</option>
+                                                <option>Luker , gloria , ramo</option>
+                                                <option>Nutresa</option>
+                                                <option>Indufaros , manuelita</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="grantparent">Fecha final</label>
+                                            <input type="datetime-local" class="form-control" id='fechainicialAsesor' placeholder=""  ng-model="horario.fechafinal" value="{{fechafinalHorario}}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pedidos">Pedidos</label>
+                                            <select class="form-control" id="pedidos" ng-model="horario.pedidos">
+                                                <option>Pomar</option>
+                                                <option>Gloria</option>
+                                                <option>Luker</option>
+                                            </select>
+                                        </div>                                  
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--termino cuerpo para editar-->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="modificarHorario(formularioHorario)" data-dismiss="modal">Actualizar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="modalInsertar" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+       <form method="post" role="form" name="formularioHorarios2">
+            <div class="modal-content">
+                <div class="modal-header">        
+                    <h4 class="modal-title" id="myModalLabel">Editar Registro</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!--cuerpo para editar -->
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="grantparent">Codigo registro</label>
+                                            <input type="text" class="form-control" id='codigoHorario' placeholder=""  ng-model="horario.id"  value="{{codigoHorario}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="grantparent">Asesor</label>
+                                            <select class="form-control" id="asesorHorario" ng-model="horario.asesor">
+                                                <option>{{asesorHorario}}</option>
+                                                <option>Bryan oquendo</option>
+                                                <option>Rafael baena</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="grantparent">Fecha inicial</label>
+                                            <input type="datetime-local" class="form-control" id='fechainicialAsesor' ng-model="horario.fechainicial" value="{{fechainicialHorario}}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="grantparent">Jobs</label>
+                                            <select class="form-control" id="jobs" ng-model="horario.jobs" >
+                                                <option>Meico,tyt,Zys</option>
+                                                <option>Luker , gloria , ramo</option>
+                                                <option>Nutresa</option>
+                                                <option>Indufaros , manuelita</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="grantparent">Fecha final</label>
+                                            <input type="date" class="form-control" id='fechainicialAsesor' placeholder=""  ng-model="horario.fechafinal" value="{{fechafinalHorario}}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pedidos">Pedidos</label>
+                                            <select class="form-control" id="pedidos" ng-model="horario.pedidos">
+                                                <option>Pomar</option>
+                                                <option>Gloria</option>
+                                                <option>Luker</option>
+                                            </select>
+                                        </div>                                  
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--termino cuerpo para editar-->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="crearHorario(formularioHorarios2)" data-dismiss="modal">Asignar nuevo</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

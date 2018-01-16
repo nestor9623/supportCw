@@ -1,0 +1,331 @@
+
+
+<div class="card-header" data-background-color="orange">
+    <h4 class="text-primary">Empresas registradas</h4>
+    <p class="text-muted">A medida que busques empresas apareceran mas registros</p>
+    <div class="input-group">
+            <div class="input-group-addon "><i class="fa fa-search" aria-hidden="true"></i></div>
+            <input type="text" class="form-control" placeholder="Ingrese la empresa a buscar" ng-model="filtrar">
+        </div> 
+</div>
+
+<!--empiezo la tabla de las empresas-->
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead >
+            <tr>
+                <td>
+                    <p class="text-primary">
+                        <b> Codigo Empresa</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Nombre empresa</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Servidor</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b> Nombre base de datos</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Opciones</b>
+                    </p>
+                </td>
+            </tr>
+        </thead>
+
+        <tbody ng-init="listarEmpresas()" >
+            <tr  ng-click="getSelectedRow()" ng-repeat="obj in listadoEmpresas|
+                            filter:filtrar ">
+                <td>{{obj.id}}</td>
+                <td>{{obj.nombre}}</td>
+                <td>{{obj.servidor}}</td>
+                <td>{{obj.basedatos}}</td>
+                <td><button type="button" title="Abrir empresa" class="pull-left btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-check-circle"></i></button>
+                    <button type="button" title="editar empresa" class="pull-left btn btn-success btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></button>
+                    <button type="button" title="eliminar empresa" class="pull-left btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-times-circle"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--finalizo las tablas-->
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content col-md-7 col-xs-offset-3">
+        <div class="modal-header">
+            <div class="card-header modal-title" data-background-color="orange">
+                <h4 class="modal-title">Informacion {{nombreSeleccionada}}</h4>
+            </div>
+        </div>
+        <div class="modal-body row">
+            <!--informacion imagen cargada-->
+            <div class="col-md-5">
+                <div class="card-avatar">
+                    <div class="img-circle">
+                        <img src="{{imagenSeleccionada}}" alt="No se cargo la imagen" style="height: 197px; width: 235px;" class="img-rounded">
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <button type="button" title="Eliminar" class="btn btn-primary btn-lg">
+                        <i class="material-icons">arrow_forward</i>   Ir al sitio</button> 
+                </div>
+
+            </div> 
+            <!--termino informacion imagen cargada-->
+            <!--informacion nombre,url,servidor-->
+            <div class="col-md-7">    
+                <div class="form-group">
+                    <label for="usr">Nombre Empresa :</label>                                            
+                    <input type="text" class="form-control" id="nombreCargar" readonly value="{{nombreSeleccionada}}">                                         
+
+                </div>
+                <div class="form-group">
+                    <label for="usr">Servidor base de datos :</label>
+                    <input type="text" class="form-control" id="servidorCargar" readonly value="{{fishSeleccionada}}">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Base de datos :</label>
+                    <input type="text" class="form-control" id="baseCargar" readonly value="{{tastinessSeleccionada}}">
+                </div>                            
+            </div> 
+            <!--termino informacion nombre,url,servidor-->
+            <!--informacion para los manuales-->
+            <div class="col-md-12 "> 
+
+                <div class="panel">
+                    <div class="card-content" data-background-color="orange" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#manual" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="pull-right material-icons">list</i>
+                                Manuales
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="manual" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div class="containter">
+                                <div class="col-md-3" style="text-align: center;">
+                                    <!--<img src="{{imagenSeleccionada}}" alt="No se cargo la imagen" style="height: 100px; width: 100px;" class="img-rounded">-->
+                                    <a href="#" class="btn btn-sq-lg btn-danger" data-toggle="tooltip" title="Descarga 4shared!">
+                                        <i class="fa fa-file-pdf-o fa-5x"></i><br/>
+                                        Web pdf <br>
+                                    </a>
+
+                                </div>
+                                <div class="col-md-3" style="text-align: center;">
+                                    <!--<img src="{{imagenSeleccionada}}" alt="No se cargo la imagen" style="height: 100px; width: 100px;" class="img-rounded">-->
+                                    <a href="#" class="btn btn-sq-lg btn-danger" data-toggle="tooltip" title="Descarga 4shared!">
+                                        <i class="fa fa-file-pdf-o fa-5x"></i><br/>
+                                        Movil  pdf <br>
+                                    </a>
+                                </div>
+                                <div class="col-md-3" style="text-align: center;">
+                                    <a href="#" class="btn btn-sq-lg btn-danger" data-toggle="tooltip" title="Descarga 4shared!">
+                                        <i class="fa fa-file-word-o fa-5x"></i><br/>
+                                        Web .doc  <br>
+                                    </a>
+                                </div>
+                                <div class="col-md-3" style="text-align: center;">
+                                    <a href="#" class="btn btn-sq-lg btn-danger" data-toggle="tooltip" title="Descarga 4shared!">
+                                        <i class="fa fa-file-word-o fa-5x"></i><br/>
+                                        Movil  .doc <br>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--termino informacion manuales-->
+                <!--empiezo informacion jobs-->
+                <div class="panel">
+                    <div class="card-content" data-background-color="orange" role="tablist" id="headingOne1">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#direccion" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="pull-right material-icons">list</i>
+                                Validar Jobs
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="direccion" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">                                                            
+                            <h4>Servidor : 216.157.31.83</h4>
+                            <p>Se llama : {{nombreSeleccionada}}</p>
+                            <hr>
+                            <h4>Servidor : 64.239.58.21</h4>
+                            <p>Se llama : {{tastinessSeleccionada}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!--termino informacion jobs-->
+                <div class="panel">
+                    <div class="card-content" data-background-color="orange" role="tablist" id="headingOne1">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#aplicaciones" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="pull-right material-icons">list</i>
+                                Aplicaciones
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="aplicaciones" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <div class="containter">
+                                <div class="col-md-4 col-xs-offset-2" style="text-align: center;">
+                                    <div class="img-thumbnail">
+                                        <img src="{{imagenSeleccionada}}" alt="No se cargo la imagen" style="height: 100px; width: 100px;" class="img-rounded">                                                                    
+                                        <h5><b>AUTOVENTA</b></h5>
+                                        <a href="#" class="btn btn-primary btn-xs">                                                                        
+                                            Version ( {{versionSeleccionada}} )
+                                            <span class="glyphicon glyphicon-download-alt"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="text-align: center;">
+                                    <div class="img-thumbnail">
+                                        <img src="{{imagenSeleccionada}}" alt="No se cargo la imagen" style="height: 100px; width: 100px;" class="img-rounded">
+                                        <h5><b>PREVENTA</b></h5>
+                                        <a href="#" class="btn btn-primary btn-xs">                                                                        
+                                            Version ( {{versionSeleccionada}} )
+                                            <span class="glyphicon glyphicon-download-alt"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--empiezo div contactos-->
+                <div class="panel ">
+                    <div class="card-content" data-background-color="orange" role="tablist" id="contactosHeader">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#contactos" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="pull-right material-icons">list</i>
+                                Contactos
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="contactos" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">       
+                            <div class="panel">
+                                <div class="card-content" data-background-color="orange" role="tab" id="jefesAsociadosid">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#jefeAsosciado" aria-expanded="true" aria-controls="collapseOne">
+                                            <span class="pull-right badge">2</span>
+                                            Jefes Asociados
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="jefeAsosciado" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div class="col-md-3">
+                                            <div class="img-circle">
+                                                <img src="{{imagenSeleccionada}}" alt="No se cargo la imagen" style="height: 100px; width: 100px;" class="img-rounded">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <ul class="list-group">
+                                                <li class="list-group-item">Nombre asociado:{{nombreSeleccionada}}</li>
+                                                <li class="list-group-item">Telefono Asocido:{{tastinessSeleccionada}}</li>
+                                                <li class="list-group-item">Correo electronico:{{fishSeleccionada}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="img-circle">
+                                                <img src="{{imagenSeleccionada}}" alt="No se cargo la imagen" style="height: 100px; width: 100px;" class="img-rounded">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <ul class="list-group">
+                                                <li class="list-group-item">Nombre asociado:{{nombreSeleccionada}}</li>
+                                                <li class="list-group-item">Telefono Asocido:{{tastinessSeleccionada}}</li>
+                                                <li class="list-group-item">Correo electronico:{{fishSeleccionada}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div class="card-content" data-background-color="orange" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#desarrolladores" aria-expanded="false" aria-controls="collapseTwo">
+                                            <span class="pull-right badge">2</span>
+                                            Desarrolladores
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="desarrolladores" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">     
+                                        <div class="col-md-12">
+                                            <div class="col-md-3">
+                                                <div class="img-circle">
+                                                    <!--<img src="{{imagenSeleccionada}}" alt="No se cargo la imagen" style="height: 100px; width: 100px;" class="img-rounded">-->
+                                                    <img src="img/icono_contactos.png" alt="No se cargo la imagen" style="height: 100px; width: 100px;" class="img-rounded">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">                                                                                    
+                                                <ul class="list-group">
+                                                    <li class="list-group-item active">COORDINADOR A CARGO</li>
+                                                    <li class="list-group-item"><i class="fa fa-user-circle-o" aria-hidden="true"></i>  {{coordinadorSeleccionada}}</li>
+                                                    <li class="list-group-item"><i class="fa fa-phone-square" aria-hidden="true"></i> {{telefonoCoordinador}}</li>
+                                                    <li class="list-group-item"><i class="fa fa-envelope-o" aria-hidden="true"></i> <strong class="text-primary">{{correoSeleccionada}}</strong></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="col-md-3">
+                                                <div class="img-circle">
+                                                    <!--<img src="{{imagenSeleccionada}}" alt="No se cargo la imagen" style="height: 100px; width: 100px;" class="img-rounded">-->
+                                                    <img src="img/icono_contactos.png" alt="No se cargo la imagen" style="height: 100px; width: 100px;" class="img-rounded">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item"><i class="fa fa-user-circle-o" aria-hidden="true"></i>  {{desarrolladorSeleccionada}}</li>
+                                                    <li class="list-group-item"><i class="fa fa-phone-square" aria-hidden="true"></i> {{telefonoDesarrolladorSeleccionada}}</li>
+                                                    <li class="list-group-item"><i class="fa fa-envelope-o" aria-hidden="true"></i> <strong class="text-primary">{{correoDesarrolladorSeleccionada}}</strong></li>                                                                                              
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div class="card-content" data-background-color="orange" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#asociadosEmpresa" aria-expanded="false" aria-controls="collapseTwo">
+                                            <span class="pull-right badge">2</span>
+                                            Asociados a la empresa
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="asociadosEmpresa" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <ul class="list-group">
+                                                <li class="list-group-item ">Nombre asociado 1 : telefono : 33333333</li>
+                                                <li class="list-group-item ">Nombre asociado 2 : telefono : 33333333</li>
+                                                <li class="list-group-item ">Nombre asociado 3 : telefono : 33333333</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div> 
+                <!--termino div contactos-->
+            </div>
+        </div>
+        <!--termino todo el content despues de form-->
+    </div>
+</div>

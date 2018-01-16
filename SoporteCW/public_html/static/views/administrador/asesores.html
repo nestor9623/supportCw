@@ -1,0 +1,210 @@
+
+
+<div class="card-header" data-background-color="orange">
+    <h4 class="text-primary">Asesores registrados</h4>
+    <p class="text-muted">A medida que busques asesores apareceran mas registros</p>
+    <div class="input-group">
+        <div class="input-group-addon "><i class="fa fa-search" aria-hidden="true"></i></div>
+        <input type="text" class="form-control" placeholder="Ingrese la empresa a buscar" ng-model="filtrar">
+    </div> 
+</div>
+
+<!--empiezo la tabla de las empresas-->
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead >
+            <tr>
+                <td>
+                    <p class="text-primary">
+                        <b>tipo doc</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>numero doc</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b> Nombres</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Apellidos</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Email</b>
+                    </p>
+                </td>
+                <td>
+                    <p class="text-primary">
+                        <b>Opciones</b>
+                    </p>
+                </td>
+            </tr>
+        </thead>
+
+        <tbody ng-init="listarAsesores()" >
+            <tr  ng-click="getSelectedAsesor()" ng-repeat="obj in listadoAsesores|
+                            filter:filtrar ">
+                <td>{{obj.tipodocumento}}</td>
+                <td>{{obj.numerodoc}}</td>
+                <td>{{obj.nombre}}</td>
+                <td>{{obj.apellido}}</td>
+                <td>{{obj.email}}</td>
+                <td>
+                    <button type="button" title="editar asesor" class="pull-left btn btn-success btn-xs" data-toggle="modal" data-target="#modalEditar"><i class="fa fa-pencil"></i></button>
+                    <button type="button" title="eliminar asesor" class="pull-left btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-times-circle"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--finalizo las tablas-->
+    <button type="button" title="crear asesor" class="pull-left btn btn-primary btn-xs" data-toggle="modal" data-target="#modalInsertar"><i class="fa fa-plus"></i>  Crear nuevo</button>
+</div>
+
+<div class="modal fade" id="modalEditar" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form method="post" role="form" name="formulario">
+            <div class="modal-content">
+                <div class="modal-header">        
+                    <h4 class="modal-title" id="myModalLabel">Editar asesores</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!--cuerpo para editar -->
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="codigo">Codigo del registro</label>
+                                            <input type="text" class="form-control" id="codigoasesor" placeholder="codigo registro" required value="{{codigoasesor}}" ng-model="asesor.id" readonly/>
+                                        
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="grantparent">Tipo documento</label>
+                                            <select class="form-control" id="grantparent" ng-model="asesor.tipodocumento">
+                                                <option>{{tipodocumento}}</option>
+                                                <option>Tarjeta de identidad</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="grant2">Numero documento</label>
+                                            <input type="text" class="form-control" id="numerodoc" placeholder="numero documento" required value="{{numerodoc}}" ng-model="asesor.numerodoc" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="suplimenta">Email</label>
+                                            <input type="text" class="form-control" id='emailAsesor' placeholder="correo electronico" required value="{{emailAsesor}}" ng-model="asesor.email"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="shorttitle">Nombre</label>
+                                            <input type="text" class="form-control" id='nombreAsesor' placeholder="Nombre del asesor" required value="{{nombreAsesor}}" ng-model="asesor.nombre"/>                                       
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Apellidos</label>
+                                            <input type="text" class="form-control" id='apellidosAsesor' placeholder="Apellidos del asesor" required value="{{apellidoAsesor}}" ng-model="asesor.apellido"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="suplimenta">Password</label>
+                                            <input type="text" class="form-control" id='pass' placeholder="password" required value="{{passAsesor}}" ng-model="asesor.pass"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="suplimenta">Repeat password</label>
+                                            <input type="text" class="form-control" id='passw' placeholder="repeat password" required value="{{pass2Asesor}}" ng-model="asesor.repeatpassword"/>
+                                        </div>                                    
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--termino cuerpo para editar-->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="modificarAsesor(formulario)">Actualizar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="modalInsertar" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form method="post" role="form" name="formulario">
+            <div class="modal-content">
+                <div class="modal-header">        
+                    <h4 class="modal-title" id="myModalLabel">Insertar asesores</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!--cuerpo para editar -->
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="grant2">Codigo del registro</label>
+                                            <input type="text" class="form-control" id="grant2" placeholder="numero documento" required  ng-model="asesor.id"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="grantparent">Tipo documento</label>
+                                            <select class="form-control" id="grantparent" ng-model="asesor.tipodocumento">
+                                                <option>Cedula ciudadania</option>
+                                                <option>Tarjeta de identidad</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="grant2">Numero documento</label>
+                                            <input type="text" class="form-control" id="numerodoc" placeholder="numero documento" required  ng-model="asesor.numerodoc" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="suplimenta">Email</label>
+                                            <input type="text" class="form-control" id='emailAsesor' placeholder="correo electronico" required ng-model="asesor.email"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="shorttitle">Nombre</label>
+                                            <input type="text" class="form-control" id='nombreAsesor' placeholder="Nombre del asesor" required  ng-model="asesor.nombre"/>                                       
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Apellidos</label>
+                                            <input type="text" class="form-control" id='apellidosAsesor' placeholder="Apellidos del asesor" required ng-model="asesor.apellido"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="suplimenta">Password</label>
+                                            <input type="text" class="form-control" id='pass' placeholder="password" required ng-model="asesor.pass"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="suplimenta">Repeat password</label>
+                                            <input type="text" class="form-control" id='passw' placeholder="repeat password" required  ng-model="asesor.repeatpassword"/>
+                                        </div>                                    
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--termino cuerpo para editar-->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"  ng-click="crearAsesor(formulario)" data-dismiss="modal">Crear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

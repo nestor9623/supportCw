@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-left bg-dark fixed-top" id="mainNav">
+    
+    <a class="navbar-brand" href="#">Soporte celuweb</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                <a class="nav-link" href="#/Empresas">
+                    <i class="fa fa-fw fa-arrow-circle-up"></i>
+                    <span class="nav-link-text">Empresas</span>
+                </a>
+            </li>
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                <a class="nav-link" data-toggle="collapse" href="#/Asesores" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-user-circle"></i>
+                    <span class="nav-link-text">Asesores</span>
+                </a>
+            </li>
+             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                <a class="nav-link" data-toggle="collapse" href="#/Horarios" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-calendar"></i>
+                    <span class="nav-link-text">Horarios</span>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                <a class="nav-link" data-toggle="collapse" href="#acerca" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-info-circle"></i>
+                    <span class="nav-link-text">Acerca de Soporte</span>
+                </a>                
+            </li>
+        </ul>
+      
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <div ng-controller="CtlLogIn" style="color: #2751c8">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal" ng-click="logOut()">
+                        <i class="fa fa-fw fa-sign-out"></i>Cerrar sesion</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

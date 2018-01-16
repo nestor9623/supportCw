@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="#">Soporte celuweb</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-fw fa-dashboard"></i>
+                    <span class="nav-link-text">Principal</span>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+                <a class="nav-link" href="#">
+                    <i class="fa fa fa-id-card"></i>
+                    <span class="nav-link-text">Perfil de usuario</span>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-fw fa-calendar"></i>
+                    <span class="nav-link-text">Horarios</span>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-info-circle"></i>
+                    <span class="nav-link-text">Acerca de Soporte</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseComponents">
+                    <li>
+                        <a href="#">Mision</a>
+                    </li>
+                    <li>
+                        <a href="#">Vision</a>
+                    </li>
+                     <li>
+                        <a href="#">Objetivos</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="sidenavToggler">
+                    <i class="fa fa-fw fa-angle-left"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <div ng-controller="CtlLogIn">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal" ng-click="logOut()">
+                        <i class="fa fa-fw fa-sign-out"></i>Cerrar sesion</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

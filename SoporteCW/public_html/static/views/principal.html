@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Administrador</title>
+
+        <meta name="description" content="Free Admin Template Based On Twitter Bootstrap 3.x">
+        <meta name="author" content="">
+        <meta name="msapplication-TileColor" content="#5bc0de" />
+        <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
+
+        <!-- Bootstrap core CSS-->
+        <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Custom fonts for this template-->
+        <link href="../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- Custom styles for this template-->
+        <link href="../assets/css/sb-admin.css" rel="stylesheet">
+        <!------------------------------------------------------------------------>       
+        <!--angular-->
+        <script src="../Dependecias/bower_components/angular/angular.min.js" type="text/javascript"></script>
+        <!--angular route-->
+        <script src="../Dependecias/bower_components/angular-route/angular-route.min.js" type="text/javascript"></script>
+        <!--angular master page-->
+        <script src="../js/appMasterPage.js" type="text/javascript"></script>
+        <!--controladores-->
+        <script src="../controllers/logIn/logInCtl.js" type="text/javascript"></script>
+        <script src="../controllers/logIn/logInSer.js" type="text/javascript"></script>
+        <!--controladores empresas-->
+        <script src="../controllers/empresas/empresasControl.js" type="text/javascript"></script>
+        <script src="../controllers/empresas/empresasService.js" type="text/javascript"></script>
+        <!--controladores asesores-->
+        <script src="../controllers/asesores/asesoresControl.js" type="text/javascript"></script>
+        <script src="../controllers/asesores/asesoresService.js" type="text/javascript"></script>
+        <!--controladoes horarios-->
+        <script src="../controllers/horarios/horariosControl.js" type="text/javascript"></script>
+        <script src="../controllers/horarios/horarioService.js" type="text/javascript"></script>
+    </head>
+    <body ng-app="appMasterPage" ng-controller="CtlValidate" ng-show="sesion">
+        <div class="row">
+            <div class="col-md-2"><div ng-include="'template/menu.html'"></div></div>
+            <div class="col-md-9 col-md-offset-2" style="padding-top: 70px;"><div ng-view></div></div>
+        </div>
+    </body>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <!--para la notificacion-->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css" type="text/css"/>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+</html>
