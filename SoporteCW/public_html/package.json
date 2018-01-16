@@ -5,6 +5,6 @@
      "express": "^4.13.3"
   },
   "scripts": {
-     "start": "node app.js"
+     "start": "node funciones.js"
   }
 }
